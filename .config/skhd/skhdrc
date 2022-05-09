@@ -1,0 +1,56 @@
+rctrl - return : osascript "${HOME}"/.config/.scripts/new-iterm-window.scpt 
+rctrl + shift - return : osascript "${HOME}"/.config/.scripts/new-iterm-window_tmux.scpt 
+rctrl + cmd - b :  "${HOME}"/.config/.scripts/BitPass.sh
+rctrl + shift - r : "${HOME}"/.config/.scripts/reload_yabairc.sh
+
+# delete focused space
+alt - q : yabai -m space --destroy
+# focus window
+rctrl - h : yabai -m window --focus west
+rctrl - j : yabai -m window --focus south
+rctrl - k : yabai -m window --focus north
+rctrl - l : yabai -m window --focus east
+
+# Float / Unfloat window
+rctrl - space : yabai -m window --toggle float
+
+alt - f         : yabai -m window --toggle zoom-fullscreen
+#shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# toggle window split type
+rctrl - s : yabai -m window --toggle split
+
+# increase window size
+alt - h : yabai -m window --resize left:-20:0
+alt - j : yabai -m window --resize bottom:0:20
+alt - k : yabai -m window --resize top:0:-20
+alt - l : yabai -m window --resize right:20:0
+
+# decrease window size
+shift + alt - l : yabai -m window --resize left:20:0
+shift + alt - k : yabai -m window --resize bottom:0:-20
+shift + alt - j : yabai -m window --resize top:0:20
+shift + alt - h : yabai -m window --resize right:-20:0
+
+ ## sP window & move window in floating mode (mobile window)
+rctrl + alt - k : yabai -m window --swap north
+rctrl + alt - j : yabai -m window --swap south
+rctrl + alt - h : yabai -m window --swap west
+rctrl + alt - l : yabai -m window --swap east
+
+
+# balance size of windows
+rctrl + alt - b : yabai -m space --balance
+
+# make floating window fill screen
+ shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+ shift + cmd - n : yabai -m space --create && \
+                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                   yabai -m window --space "${index}" && \
+                   yabai -m space --focus "${index}"
+
