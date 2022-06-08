@@ -73,6 +73,8 @@ Plug 'vim-airline/vim-airline-themes'
 " GitGud w/ Fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'dccsillag/magma.vim'
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 """"""""""""""""""""""
@@ -107,8 +109,7 @@ let g:jupyter_mapkeys = 0
 :cnoremap kj <Esc>
 :inoremap KJ <Esc>
 :cnoremap KJ <Esc>
-"Quick Write, Write & Quit, and Force Quit
-nmap <leader>ww :w<CR>
+"Quick Write & Quit and Force Quit
 nmap <leader>wq :wq<CR>
 nmap <leader>qq :q!<CR>
 "Yank Fix, behaves like other capital actions
@@ -140,9 +141,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "Fugitive Mapping
 nmap <leader>gh : diffget //3<CR>
 nmap <leader>gu : diffget //2<CR>
-nmap <leader>gfs :G<CR>
-nmap <leader>gfl :G log<CR>
-nmap <leader>gfd :G diff<CR>
+nmap <leader>gs :G<CR>
+nmap <leader>gl :G log<CR>
+nmap <leader>gd :G diff<CR>
 
 "EMMET SETTINGS
 autocmd FileType html,htmldjango,css,scss EmmetInstall
@@ -154,3 +155,6 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeGitStatusShowClean = 1
+
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki',
+            \ 'syntax': 'markdown', 'ext': '.md'}]
